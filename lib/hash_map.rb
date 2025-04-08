@@ -96,6 +96,16 @@ class HashMap
     arr
   end
 
+  def values
+    arr = []
+    @buckets.each do |current_obj|
+      if current_obj
+        arr << current_obj.to_a[0][1].to_a[0][1]
+      end
+    end
+    arr
+  end
+
 end
 
 #testing zone
@@ -104,6 +114,9 @@ my_hash_map = HashMap.new(0.5,8)
 my_hash_map.set('Link', '1')
 my_hash_map.set('Mario', '2')
 my_hash_map.set('Bomberman', '3')
-p my_hash_map.length
-p my_hash_map.buckets.length
+my_hash_map.set('Zelda', '4')
+my_hash_map.set('Luigi', '5')
+my_hash_map.set('Malon', '6')
+my_hash_map.remove('Luigi')
+p my_hash_map.values
 p my_hash_map.keys
