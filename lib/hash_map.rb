@@ -4,7 +4,7 @@ class HashMap
   def initialize (load_factor, capacity)
     @load_factor = load_factor
     @capacity = capacity
-    @buckets = []
+    @buckets = Array.new(capacity)
   end
 
   def hash(key)
@@ -14,18 +14,27 @@ class HashMap
     hash_code
   end
 
-  #has no collision handling, does not grow bucket array... yet.
+  #has no collision handling.... yet
+  
   def set (key, value)
     hash = hash(key)
     @buckets.each_with_index do |current_obj, index|
-      #required to restrict bucket size
       raise IndexError if index.negative? || index >= @buckets.length
-      if current_obj.key?(hash) 
+      if current_obj && current_obj.key?(hash) 
         @buckets[index] = {hash => {key => value}}
         return
       end
     end
-    @buckets.push({hash => {key => value}})
+    @buckets.each_with_index do |current_obj, index|
+      raise IndexError if index.negative? || index >= @buckets.length
+      if !current_obj
+        @buckets[index] = {hash => {key => value}}
+        if self.length > @load_factor * @buckets.length
+          @capacity.times {@buckets.push(nil)}
+        end
+        return
+      end
+    end
   end
 
   def get(key)
@@ -52,13 +61,23 @@ class HashMap
     hash = hash(key)
     @buckets.each_with_index do |current_obj, index|
       raise IndexError if index.negative? || index >= @buckets.length
-      if current_obj.key?(hash) 
+      if current_obj && current_obj.key?(hash) 
         to_delete = @buckets[index]
-        @buckets = @buckets.select {|element| element != @buckets[index]}
+        @buckets = @buckets.map {|element| element if element != @buckets[index]}
         return to_delete
       end
     end
     nil
+  end
+
+  def length
+    buckets_with_value = 0
+    @buckets.each do |bucket|
+      if bucket
+        buckets_with_value += 1
+      end
+    end
+    buckets_with_value
   end
 
 end
@@ -70,9 +89,7 @@ my_hash_map = HashMap.new(0.5,8)
 my_hash_map.set('Link', '1')
 my_hash_map.set('Mario', '2')
 my_hash_map.set('Bomberman', '3')
-
-puts my_hash_map.buckets
-
-my_hash_map.remove('Mario')
-puts '----------------'
-puts my_hash_map.buckets
+my_hash_map.set('Wario', '3')
+my_hash_map.set('Samus', '3')
+p my_hash_map.buckets
+puts my_hash_map.length
