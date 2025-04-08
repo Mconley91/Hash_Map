@@ -48,6 +48,19 @@ class HashMap
     return false
   end
 
+  def remove(key)
+    hash = hash(key)
+    @buckets.each_with_index do |current_obj, index|
+      raise IndexError if index.negative? || index >= @buckets.length
+      if current_obj.key?(hash) 
+        to_delete = @buckets[index]
+        @buckets = @buckets.select {|element| element != @buckets[index]}
+        return to_delete
+      end
+    end
+    nil
+  end
+
 end
 
 
@@ -57,7 +70,9 @@ my_hash_map = HashMap.new(0.5,8)
 my_hash_map.set('Link', '1')
 my_hash_map.set('Mario', '2')
 my_hash_map.set('Bomberman', '3')
-p my_hash_map.has?('Link')
-p my_hash_map.has?('Zelda')
 
-# puts my_hash_map.buckets
+puts my_hash_map.buckets
+
+my_hash_map.remove('Mario')
+puts '----------------'
+puts my_hash_map.buckets
