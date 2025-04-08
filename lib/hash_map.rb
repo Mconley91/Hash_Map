@@ -80,8 +80,13 @@ class HashMap
     buckets_with_value
   end
 
-end
+  def clear
+    @buckets.each_with_index do |bucket,index|
+      @buckets[index] = nil
+    end
+  end
 
+end
 
 #testing zone
 my_hash_map = HashMap.new(0.5,8)
@@ -89,8 +94,5 @@ my_hash_map = HashMap.new(0.5,8)
 my_hash_map.set('Link', '1')
 my_hash_map.set('Mario', '2')
 my_hash_map.set('Bomberman', '3')
-my_hash_map.set('Wario', '3')
-my_hash_map.set('Samus', '3')
-p my_hash_map.remove('Samus')
 p my_hash_map.buckets
 puts my_hash_map.length
