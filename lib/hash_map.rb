@@ -17,6 +17,7 @@ class HashMap
   def set (key, value)
     hash = hash(key)
     @buckets.each_with_index do |current_obj, index|
+      #required to restrict bucket size
       raise IndexError if index.negative? || index >= @buckets.length
       if current_obj.key?(hash) 
         @buckets[index] = {hash => {key => value}}
@@ -26,13 +27,26 @@ class HashMap
     @buckets.push({hash => {key => value}})
   end
 
+  def get(key)
+    hash = hash(key)
+    @buckets.each do |current_obj|
+      if current_obj.key?(hash) 
+        return current_obj.dig(hash, key)
+      end
+    end
+    nil
+  end
+
 end
 
+
+#testing zone
 my_hash_map = HashMap.new(0.5,8)
 
 my_hash_map.set('Link', '1')
 my_hash_map.set('Mario', '2')
 my_hash_map.set('Bomberman', '3')
 my_hash_map.set('Link', '45')
+p my_hash_map.get('Link')
 
-puts my_hash_map.buckets
+# puts my_hash_map.buckets
