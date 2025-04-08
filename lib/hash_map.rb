@@ -1,7 +1,7 @@
 class HashMap
   attr_accessor :load_factor, :capacity, :buckets
   
-  def initialize (load_factor, capacity)
+  def initialize (load_factor = 0.5, capacity = 8)
     @load_factor = load_factor
     @capacity = capacity
     @buckets = Array.new(capacity)
@@ -115,14 +115,14 @@ class HashMap
 end
 
 #testing zone
-my_hash_map = HashMap.new(0.5,8)
+# my_hash_map = HashMap.new(0.5,8)
 
-my_hash_map.set('Link', '1')
-my_hash_map.set('Mario', '2')
-my_hash_map.set('Bomberman', '3')
-my_hash_map.set('Zelda', '4')
-my_hash_map.set('Luigi', '5')
-my_hash_map.set('Malon', '6')
-p my_hash_map.keys
-p my_hash_map.values
-p my_hash_map.entries
+# my_hash_map.set('Link', '1')
+# my_hash_map.set('Mario', '2')
+# my_hash_map.set('Bomberman', '3')
+# my_hash_map.set('Zelda', '4')
+# my_hash_map.set('Luigi', '5')
+# my_hash_map.set('Malon', '6')
+# p my_hash_map.keys
+# p my_hash_map.values
+# p my_hash_map.entries
