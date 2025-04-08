@@ -14,7 +14,7 @@ class HashMap
     hash_code
   end
 
-  #has no collision handling.... yet
+  #has no collision handling in #set method.... yet
   
   def set (key, value)
     hash = hash(key)
