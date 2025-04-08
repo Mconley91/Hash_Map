@@ -14,11 +14,17 @@ test.set('ice cream', 'white')
 test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
-
-p test.buckets
-
 test.set('lion', '22')
 test.set('apple', 'GOLDEN')
 test.set('moon', 'silver')
 
 p test.buckets
+
+p test.get('apple')
+p test.has?('kite')
+p test.remove ('moon')
+p test.length
+p test.keys
+p test.values
+p test.clear
+p test.entries
