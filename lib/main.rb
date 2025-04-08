@@ -15,13 +15,10 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-p test.entries
-p test.length
-p test.capacity
+p test.buckets
 
 test.set('lion', '22')
 test.set('apple', 'GOLDEN')
+test.set('moon', 'silver')
 
-p test.entries
-p test.length
-p test.capacity
+p test.buckets

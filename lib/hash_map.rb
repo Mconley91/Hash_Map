@@ -113,16 +113,3 @@ class HashMap
   end
 
 end
-
-#testing zone
-# my_hash_map = HashMap.new(0.5,8)
-
-# my_hash_map.set('Link', '1')
-# my_hash_map.set('Mario', '2')
-# my_hash_map.set('Bomberman', '3')
-# my_hash_map.set('Zelda', '4')
-# my_hash_map.set('Luigi', '5')
-# my_hash_map.set('Malon', '6')
-# p my_hash_map.keys
-# p my_hash_map.values
-# p my_hash_map.entries
