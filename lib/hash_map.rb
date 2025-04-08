@@ -14,6 +14,7 @@ class HashMap
     hash_code
   end
 
+  #has no collision handling, does not grow bucket array... yet.
   def set (key, value)
     hash = hash(key)
     @buckets.each_with_index do |current_obj, index|
