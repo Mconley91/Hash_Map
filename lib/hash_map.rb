@@ -63,7 +63,7 @@ class HashMap
       raise IndexError if index.negative? || index >= @buckets.length
       if current_obj && current_obj.key?(hash) 
         to_delete = @buckets[index]
-        @buckets = @buckets.map {|element| element if element != @buckets[index]}
+        @buckets[index] = nil
         return to_delete
       end
     end
@@ -91,5 +91,6 @@ my_hash_map.set('Mario', '2')
 my_hash_map.set('Bomberman', '3')
 my_hash_map.set('Wario', '3')
 my_hash_map.set('Samus', '3')
+p my_hash_map.remove('Samus')
 p my_hash_map.buckets
 puts my_hash_map.length
