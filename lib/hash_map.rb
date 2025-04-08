@@ -106,6 +106,12 @@ class HashMap
     arr
   end
 
+  def entries
+    arr = []
+    self.length.times {|num| arr << [keys[num], values[num]]}
+    arr
+  end
+
 end
 
 #testing zone
@@ -117,6 +123,6 @@ my_hash_map.set('Bomberman', '3')
 my_hash_map.set('Zelda', '4')
 my_hash_map.set('Luigi', '5')
 my_hash_map.set('Malon', '6')
-my_hash_map.remove('Luigi')
-p my_hash_map.values
 p my_hash_map.keys
+p my_hash_map.values
+p my_hash_map.entries
