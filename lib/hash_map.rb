@@ -38,6 +38,16 @@ class HashMap
     nil
   end
 
+  def has?(key)
+    hash = hash(key)
+    @buckets.each do |current_obj|
+      if current_obj.key?(hash) 
+        return true
+      end
+    end
+    return false
+  end
+
 end
 
 
@@ -47,7 +57,7 @@ my_hash_map = HashMap.new(0.5,8)
 my_hash_map.set('Link', '1')
 my_hash_map.set('Mario', '2')
 my_hash_map.set('Bomberman', '3')
-my_hash_map.set('Link', '45')
-p my_hash_map.get('Link')
+p my_hash_map.has?('Link')
+p my_hash_map.has?('Zelda')
 
 # puts my_hash_map.buckets
