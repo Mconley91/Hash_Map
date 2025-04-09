@@ -81,9 +81,7 @@ class HashMap
   end
 
   def clear
-    @buckets.each_with_index do |bucket,index|
-      @buckets[index] = nil
-    end
+    @buckets = Array.new(capacity)
   end
 
   def keys
